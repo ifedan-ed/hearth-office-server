@@ -739,7 +739,11 @@ function getEditorHtml(req, res) {
       }
 
       const canEdit = fileInfo.UserCanOnlyComment || fileInfo.UserCanWrite || fileInfo.UserCanReview;
-      if (!canEdit) {
+      // Hearth: the "opened in view mode" warning is for a person who asked to
+      // edit and was refused. A host that opens a file through the view action
+      // without write rights (a read-only share or link) chose view mode
+      // itself, so its readers are told nothing.
+      if (!canEdit && 'view' !== userAuth.mode) {
         ctx.logger.warn('wopiEditor: edit mode is not allowed, fallback to view mode');
         userAuth.mode = 'view';
         userAuth.forcedViewMode = true;

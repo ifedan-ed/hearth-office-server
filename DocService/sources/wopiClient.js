@@ -1276,6 +1276,10 @@ exports.discovery = discovery;
 exports.collaboraCapabilities = collaboraCapabilities;
 exports.parseWopiCallback = parseWopiCallback;
 exports.getEditorHtml = getEditorHtml;
+// Hearth: for hearthPrepare.js (a document converted ahead of its open).
+exports.checkFileInfo = checkFileInfo;
+exports.createDocId = createDocId;
+exports.checkAndInvalidateCache = checkAndInvalidateCache;
 exports.getConverterHtml = getConverterHtml;
 exports.putFile = putFile;
 exports.parsePutFileResponse = parsePutFileResponse;

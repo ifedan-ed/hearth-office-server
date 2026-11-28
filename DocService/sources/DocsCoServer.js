@@ -2006,6 +2006,8 @@ exports.resetForceSaveAfterChanges = resetForceSaveAfterChanges;
 exports.getExternalChangeInfo = getExternalChangeInfo;
 exports.checkJwt = checkJwt;
 exports.getRequestParams = getRequestParams;
+// Hearth: for hearthPrepare.js (nothing is prepared while a document is open).
+exports.getParticipantMap = getParticipantMap;
 exports.checkJwtHeader = checkJwtHeader;
 
 async function encryptPasswordParams(ctx, data) {

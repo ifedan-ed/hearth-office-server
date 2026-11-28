@@ -45,6 +45,7 @@ const canvasService = require('./canvasservice');
 const converterService = require('./converterservice');
 const fileUploaderService = require('./fileuploaderservice');
 const wopiClient = require('./wopiClient');
+const hearthPrepare = require('./hearthPrepare');
 const constants = require('./../../Common/sources/constants');
 const utils = require('./../../Common/sources/utils');
 const commonDefines = require('./../../Common/sources/commondefines');
@@ -221,6 +222,8 @@ docsCoServer.install(server, app, () => {
   app.get('/ConvertService.ashx', utils.checkClientIp, rawFileParser, converterService.convertXml);
   app.post('/ConvertService.ashx', utils.checkClientIp, rawFileParser, converterService.convertXml);
   app.post('/converter', utils.checkClientIp, rawFileParser, converterService.convertJson);
+  // Hearth: a document converted ahead of its open (hearthPrepare.js).
+  app.post('/hearth/prepare', utils.checkClientIp, rawFileParser, hearthPrepare.prepareHandler);
 
   app.param('docid', (req, res, next, val) => {
     if (constants.DOC_ID_REGEX.test(val)) {
